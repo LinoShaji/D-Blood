@@ -19,9 +19,10 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Container(height: 900,
+      body: Container(
+        height: 900,
         decoration: BoxDecoration(
-            color: Color(0xffe8e8ea),
+            color: const Color(0xffe8e8ea),
             borderRadius: BorderRadius.circular(15),
             boxShadow: const [
               BoxShadow(
@@ -29,45 +30,54 @@ class _AuthScreenState extends State<AuthScreen> {
                 blurRadius: 20,
               )
             ]),
-        margin: EdgeInsets.all(15),
+        margin: const EdgeInsets.all(15),
         child: SingleChildScrollView(
           child: Column(children: [
             Container(
-                margin: EdgeInsets.only(left: 100, top: 20),
+                margin: const EdgeInsets.only(left: 150, top: 20),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(150),
                       bottomRight: Radius.circular(100)),
-                  child: Image.asset('lib/assets/pageone.jpg'),
+                  child: Image.asset('lib/assets/pageone.jpg', height: 200),
                 )),
-            SizedBox(
+            const SizedBox(
               height: 100,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 TextButton(
-                  onPressed: () {
-                    setState(() {
-                      isLogin = false;
-                    });
-                  },
-                  child: Text('Login',
-                      style: TextStyle(color: Colors.black, fontSize: 25)),
-                ),
+                    onPressed: () {
+                      setState(() {
+                        isLogin = false;
+                      });
+                    },
+                    child: RichText(
+                      text: const TextSpan(children: <TextSpan>[
+                        TextSpan(
+                          text: "L",
+                          style: TextStyle(color: Colors.black,fontSize: 23,fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(text: "o",style: TextStyle(color: Colors.red,fontSize: 23,fontWeight: FontWeight.bold)),
+                        TextSpan(text: "g",style: TextStyle(color: Colors.black,fontSize: 23,fontWeight: FontWeight.bold)),
+                        TextSpan(text: "i",style: TextStyle(color: Colors.black,fontSize: 23,fontWeight: FontWeight.bold)),
+                        TextSpan(text: "n",style: TextStyle(color: Colors.black,fontSize: 23,fontWeight: FontWeight.bold))
+                      ]),
+                    )),
                 TextButton(
                     onPressed: () {
                       setState(() {
                         isLogin = true;
                       });
                     },
-                    child: Text(
-                      'SignUp',
-                      style: TextStyle(color: Colors.black, fontSize: 25),
+                    child: const Text(
+                      'Sign Up',
+                      style: TextStyle(color: Colors.black, fontSize: 23, fontWeight: FontWeight.bold),
                     )),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 23),
             //RichText(text: TextSpan(text: 'Login',style: TextStyle()))
             isLogin == false
                 ? Column(
@@ -75,30 +85,51 @@ class _AuthScreenState extends State<AuthScreen> {
                       Container(
                         height: 50,
                         width: 450,
-                        margin: EdgeInsets.only(left: 20, right: 20),
-                        child: TextFormField(
-                          decoration: InputDecoration(fillColor: Colors.white,
-                              border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25.0),
-                            borderSide: new BorderSide(),
-                          )),
+                        margin: const EdgeInsets.only(left: 20, right: 20),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            hintText: 'Username',
+                            hintStyle: const TextStyle(
+                              color: Colors.grey,
+                              fontWeight: FontWeight.w800,
+                              fontSize: 18,
+                            ),
+                            icon: const Icon(Icons.supervised_user_circle),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                              borderSide: const BorderSide(),
+                            ),
+                          ),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 23),
                       Container(
                         height: 50,
                         width: 450,
-                        margin: EdgeInsets.only(left: 20, right: 20),
+                        margin: const EdgeInsets.only(left: 20, right: 20),
                         child: TextFormField(
                           decoration: InputDecoration(
+                            icon: Icon(Icons.lock),
+                              hintText: 'Password',
+                              hintStyle: const TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.w800,
+                                fontSize: 18,
+                              ),
+                              filled: true,
+                              fillColor: Colors.white,
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(25.0),
+                                borderRadius: BorderRadius.circular(15.0),
                                 borderSide: new BorderSide(),
                               )),
                         ),
-                      )],
+                      ),
+                      TextButton(onPressed: (){}, child: Text('Forgot Password?',style: TextStyle(color: Colors.grey),textAlign: TextAlign.right,))
+                    ],
                   )
-                : Text('SighUpWidget')
+                : const Text('SighUpWidget')
           ]),
         ),
       ),
